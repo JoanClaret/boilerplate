@@ -1,0 +1,25 @@
+/**
+ *  Main
+ **/
+
+* {
+  outline: none;
+}
+
+html {
+  min-height: 100%;
+  overflow-x: auto;
+}
+
+a {
+  color: $brand-primary;
+  text-decoration: none;
+
+  &:hover {
+    color: $brand-primary;
+  }
+
+  &:focus {
+    color: $brand-primary;
+  }
+}
