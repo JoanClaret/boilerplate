@@ -85,7 +85,7 @@ gulp.task('js', function() {
 gulp.task('watch', function () {
   gulp.watch('_src/scss/*.scss', ['sass']);
   gulp.watch('_src/js/*.js', ['js']);
-  gulp.watch(['*.html', '_layouts/*.html', '_posts/*'], ['jekyll-rebuild']);
+  gulp.watch(['*.html', '_layouts/*.html', '_includes/*.html', '_posts/*'], ['jekyll-rebuild']);
 });
 
 /**
