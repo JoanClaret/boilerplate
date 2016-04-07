@@ -1,4 +1,5 @@
 /vendor
+/_site
 /node_modules
 /_site
 .env

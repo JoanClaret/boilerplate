@@ -1,0 +1,1 @@
+exclude: ["node_modules", "src", "boilerplate.sublime-project", "boilerplate.sublime-workspace", "gulpfile.js", "package.json", "README.md" ]
