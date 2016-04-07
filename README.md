@@ -20,3 +20,7 @@ How to use it:
 - Clone the Sierra library repository `git clone https://github.com/sierra-library/sierra.git`.
 - Run `gem install jekyll` (Use sudo for linux, or open terminal as administrator for windows).
 - Run `gulp` to watch html, SCSS and js files and serve the site (browser sync ready).
+
+Credits
+------
+Thanks to [shakyShane](https://github.com/shakyShane) for this awesome gulpfile.
