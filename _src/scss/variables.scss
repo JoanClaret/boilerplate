@@ -1,0 +1,328 @@
+
+/**
+ *  $LAYOUT
+ */
+
+$gutterwidth:               24px;
+$container-maxwidth:        1380px;
+$container-medium-maxwidth: 944px;
+$container-small-maxwidth:  400px;
+$radius:                    3px;
+$border-box:                true;
+
+
+/**
+ *  $FONT
+ */
+
+$basefont: 'Lato', sans-serif;
+$codefont: "Courier New", monospace;
+
+$font-size-base:        14px;
+$font-size-base-medium: 15px;
+$font-size-base-large:  15px;
+$font-weight-base:      400;
+$line-height-base:      1.5em;
+
+
+/**
+ *  $COLORS
+ */
+
+// white
+$white:					          #ffffff;
+
+
+// Brand colors
+$brand-primary:           #f36;
+$brand-secondary:         #4fd2c0;
+$brand-dark:			        #021830;
+$brand-dark-light:		    #0f243b;
+$brand-dark-lighter:      #1b2f45;
+
+
+$deep-blue:				       #171722;
+$color-success:         #4caf50;
+$color-info:            #5bc0de;
+$color-warning:         $brand-primary;
+$color-error:           #dd2c00;
+
+// background
+$body-bg:               #f2f2f2;
+
+// Rating
+$rating-bg:			      	$white;
+
+// gray :              	#dee6ea;
+$gray-light:        	  #edf3f6;
+$gray-soft:        		  #edf3f6;
+$gray-dark:				      #969da6;
+$background-gray:		    $gray-soft;
+$border-color:		    	#ddd;
+
+// Tipography colors
+$text-dark:             #3e4145; 	// body text
+$text-color:            $text-dark;
+$text-body:             $text-color;
+$text-gray:	            #969da6; 	
+
+// Headings
+$heading-font: 			    $basefont;
+$heading-weight:		    300;
+$heading-case:			    none;
+    		
+// Shadows
+$box-shadow:			      0 1px 1px rgba(0,0,0,.1);
+
+// forms
+$form-bg-color:			   $white;
+$form-text-color:		   $text-dark;
+
+// tables
+$table-bg-color:		    $white;
+$table-header-bg-color:	$gray-light;
+$table-text-color:		  $text-dark;
+
+// Loading spinner
+$loading-spinner-bg:     $brand-primary;
+
+// Tags
+$tag-text-color:        #ffffff;
+$tag-bg-color:          #969da6;
+$tag-bullet:            #ffffff;
+
+
+$text-color-map: (
+  primary:              $brand-primary,
+  secondary:            $brand-secondary,
+  dark:                 $text-dark,
+  gray:                 $text-gray,
+  green:                $color-success,
+  success:              $color-success,
+  red:                  $color-error,
+  error:                $color-error,
+  warning:              $color-warning
+);
+
+$background-color-map: (
+  primary:              $brand-primary,
+  dark:                 $brand-dark,
+  secondary:            $brand-secondary,
+  white:                $white,
+  success:              $color-success,
+  info:                 $color-info,
+  warning:              $color-warning,
+  error:                $color-error,
+  gray:                 $background-gray,
+  gray-dark:            $gray-dark,
+  gray-soft:            $gray-soft,
+  gray-light:           $gray-light
+);
+
+
+// Ratings
+$rating1			: #DD2C00;
+$rating2			: #FF5722;
+$rating3			: #FF9800;
+$rating4			: #FFC107;
+$rating5			: #F5dc00;
+$rating6			: #CDDC39;
+$rating7			: #8BC34A;
+$rating8			: #4CAF50;
+$rating9			: #43A047;
+$rating10			: #388E3C;
+
+$background-color-map: map-merge($background-color-map, (
+  rating1: $rating1,
+  rating2: $rating2,
+  rating3: $rating3,
+  rating4: $rating4,
+  rating5: $rating5,
+  rating6: $rating6,
+  rating7: $rating7,
+  rating8: $rating8,
+  rating9: $rating9,
+  rating10: $rating10
+));
+
+
+/**
+*  $BUTTONS
+*/
+
+$button-bg-color:       #f4f8fa; // default color for buttons
+$button-text-color:     $text-color; // default color for buttons
+$button-border-color:   #dddddd;
+$button-border-radius: 2em;
+
+$button-sizes: (
+  normal: (
+    fontSize: 12px,
+    lineHeight: 1.5,
+    paddingTB: 10px,
+    paddingLR: 20px
+  ),
+  big: (
+    fontSize: 16px,
+    lineHeight: 1.5,
+    paddingTB: 10px,
+    paddingLR: 30px
+  ),
+  small: (
+    fontSize: 11px,
+    lineHeight: 1.273,
+    paddingTB: 6px,
+    paddingLR: 20px
+  ),
+  huge: (
+    fontSize: 16px,
+    lineHeight: 1.5,
+    paddingTB: 15px,
+    paddingLR: 30px
+  ),
+  hugeLg: (
+    fontSize: 18px,
+    lineHeight: 1.5,
+    paddingTB: 18px,
+    paddingLR: 50px
+  )
+);
+
+/**
+* BADGES
+*/
+
+$badge-color:           $white;
+$badge-bg:              #34495e;
+
+$badges-color-map: (
+  primary:              $brand-primary,
+  secondary:            $brand-secondary,
+  dark:                 $brand-dark,
+  gray:                 $text-gray,
+  success:              $color-success,
+  error:                $color-error,
+  warning:              $color-warning
+);
+
+// Social colors
+
+$fb: rgb(59, 89, 182);
+$tw: rgb(64,153,255);
+$googleplus: rgb(215, 61, 50);
+$pinterest: rgb(203, 32, 39);
+$skype: rgb(18,165,244);
+$spotify :rgb(129,183,26);
+$instagram :#4E433C;
+$tumblr: #2B4964;
+$vimeo: #86B32D;
+$soundcloud: #f76600;
+$youtube: #FF3333;
+$linkedin: #4875B4;
+$flickr: #FE0883;
+$foursquare: #8FD400;
+
+
+/**
+*  $PAGINATOR
+*/
+
+$paginator-item-radius:       $radius;
+$paginator-item-bg:           #34495e;
+$paginator-item-color:        $white;
+
+$paginator-item-border:       $body-bg;         // only for compact paginator
+$paginator-item-active-bg:    $brand-primary;
+$paginator-item-active-color: $white;
+
+
+//-----------------------------------
+//    $MEDIA QUERIES BREAKPOINTS
+//-----------------------------------
+
+
+// Define the breakpoints at which your layout will change, adapting to different screen sizes.
+
+// Extra small screen / phone
+//** Deprecated `@screen-xs` as of v3.0.1
+$screen-xs:                  480px;
+//** Deprecated `$screen-xs-min` as of v3.2.0
+$screen-xs-min:              $screen-xs;
+//** Deprecated `$screen-phone` as of v3.0.1
+$screen-phone:               $screen-xs-min;
+
+// Small screen / tablet
+//** Deprecated `$screen-sm` as of v3.0.1
+$screen-sm:                  768px;
+$screen-sm-min:              $screen-sm;
+//** Deprecated `$screen-tablet` as of v3.0.1
+$screen-tablet:              $screen-sm-min;
+
+// Medium screen / desktop
+//** Deprecated `$screen-md` as of v3.0.1
+$screen-md:                  1025px; //992px; IMPORTANT! Si canviem això, s'ha de canviar també al fitxer dropdown.js
+$screen-md-min:              $screen-md;
+//** Deprecated `$screen-desktop` as of v3.0.1
+$screen-desktop:             $screen-md-min;
+
+// Large screen / wide desktop
+//** Deprecated `$screen-lg` as of v3.0.1
+$screen-lg:                  1280px;
+$screen-lg-min:              $screen-lg;
+//** Deprecated `$screen-lg-desktop` as of v3.0.1
+$screen-lg-desktop:          $screen-lg-min;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-xs-max:              ($screen-sm-min - 1);
+$screen-sm-max:              ($screen-md-min - 1);
+$screen-md-max:              ($screen-lg-min - 1);
+
+
+/**
+ *  $GRID SYSTEM
+ */
+
+$flexboxgrid: false; // https://github.com/kristoferjoseph/flexboxgrid
+
+
+/**
+ *  $BOOTSTRAP GRID SYSTEM CONFIG
+ */
+
+
+// Number of columns in the grid.
+$grid-columns:              12;
+
+// Padding between columns. Gets divided in half for the left and right.
+$grid-gutter-width:         30px;
+
+// Navbar collapse (point at which the navbar becomes uncollapsed.)
+$grid-float-breakpoint:     $screen-sm-min;
+
+//** Point at which the navbar begins collapsing.
+$grid-float-breakpoint-max: ($grid-float-breakpoint - 1);
+
+
+//-----------------------------------
+//    $CONTAINER SIZES
+//-----------------------------------
+
+//## Define the maximum width of `.container` for different screen sizes.
+
+// Small screen / tablet
+$container-tablet:             auto; // (720px + $grid-gutter-width);
+//** For `$screen-sm-min` and up.
+$container-sm:                 auto; // $container-tablet;
+
+// Medium screen / desktop
+$container-desktop:            auto; // (940px + $grid-gutter-width);
+//** For `$screen-md-min` and up.
+$container-md:                 auto; // $container-desktop;
+
+// Large screen / wide desktop
+$container-large-desktop:      (1140px + $grid-gutter-width);
+//** For `$screen-lg-min` and up.
+$container-lg:                 $container-large-desktop;
+
+
+

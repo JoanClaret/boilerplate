@@ -1,0 +1,120 @@
+/**
+ *  Header
+ **/
+
+// Main site header
+.header {
+  background-color: $white;
+  padding: $grid-gutter-width;
+}
+
+// Navigation
+.navigation {
+  background-color: $white;
+  transition: all .25s ease-in-out;
+
+  @include breakpoint(bp-large, max-width) {
+    bottom: 0;
+    padding-top: 50px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transform: translate(250px);
+    width: 250px;
+  }
+
+  @include breakpoint(bp-large) {
+    float: right;
+  }
+
+  &.visible {
+    transform: translate(0);
+  }
+}
+
+.navigation-list {
+  margin: 0;
+}
+
+.navigation-list-item {
+  margin: 0;
+
+  @include breakpoint(bp-large, max-width) {
+    border-bottom: 1px solid $border-color;
+    display: block;
+  }
+
+  @include breakpoint(bp-large) {
+    display: inline;
+  }
+
+  a {
+    display: inline-block;
+    padding: 15px 20px;
+  }
+}
+
+// Hamburger icon
+.nav-opener {
+  cursor: pointer;
+  height: 23px;
+  position: fixed;
+  right: 20px;
+  top: 22px;
+  transform: rotate(0deg);
+  transition: .5s ease-in-out;
+  width: 28px;
+  z-index: 10;
+
+  @include breakpoint(bp-large) {
+    display: none;
+  }
+
+  span {
+    background: $brand-primary;
+    border-radius: 9px;
+    display: block;
+    height: 2px;
+    left: 0;
+    opacity: 1;
+    position: absolute;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+    width: 28px;
+
+    &:nth-child(1) {
+      top: 0;
+    }
+
+    &:nth-child(2),
+    &:nth-child(3) {
+      top: 10px;
+    }
+
+    &:nth-child(4) {
+      top: 20px;
+    }
+  }
+
+  &.open {
+    span:nth-child(1) {
+      left: 50%;
+      top: 10px;
+      width: 0%;
+    }
+
+    span:nth-child(2) {
+      transform: rotate(45deg);
+    }
+
+    span:nth-child(3) {
+      transform: rotate(-45deg);
+    }
+
+    span:nth-child(4) {
+      left: 50%;
+      top: 18px;
+      width: 0%;
+    }
+  }
+}

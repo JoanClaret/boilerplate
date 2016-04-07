@@ -1,76 +1,95 @@
-var gulp            = require('gulp'),
-    uglify          = require('gulp-uglify'),
-    rename          = require('gulp-rename'),
-    concat          = require('gulp-concat'),
-    sass            = require('gulp-sass'),             // SASS compiler
-    cssnano         = require('gulp-cssnano'),          // CSS minify
-    gutil           = require('gulp-util'),             // Utility functions for gulp plugins (for example beep on errors)
-    livereload      = require('gulp-livereload'),       // Automatically reload browser when saving a file
-    notify          = require('gulp-notify'),           // Sweet notifications on your desktop
-    plumber         = require('gulp-plumber'),          // Prevent pipe breaking caused by errors from gulp plugins
-    autoprefixer    = require('gulp-autoprefixer'),     // Prefixes for old browsers
-    browserify      = require('browserify'),            // Load modules
-    source          = require('vinyl-source-stream'),   // Gives streaming vinyl file object
-    buffer          = require('vinyl-buffer')           // Convert from streaming to buffered vinyl file object
-;
+var gulp        = require('gulp');
+var browserSync = require('browser-sync');
+var sass        = require('gulp-sass');
+var prefix      = require('gulp-autoprefixer');
+var cp          = require('child_process');
+var browserify  = require('browserify');
+var source      = require('vinyl-source-stream');
+var uglify      = require('gulp-uglify');
+var rename      = require('gulp-rename');
+var buffer      = require('vinyl-buffer');
+var cssnano     = require('gulp-cssnano');
 
-// Error handling
-var onError = function (err) {
-    notify.onError({
-        title: "Gulp",
-        subtitle: "Failure!",
-        message: "Error: <%= error.message %>",
-        sound: "Beep"
-    })(err);
-    this.emit('end');
+
+var jekyll   = process.platform === 'win32' ? 'jekyll.bat' : 'jekyll';
+var messages = {
+    jekyllBuild: '<span style="color: grey">Running:</span> $ jekyll build'
 };
 
-// Styles
-gulp.task('styles', function () {
-    return gulp.src('./src/scss/styles.scss')
-        .pipe(plumber({errorHandler: onError}))
-        .pipe(sass({compress: false}).on('error', gutil.log))
-        .pipe(autoprefixer({
-            browsers: ['last 2 versions'],
-            cascade: false
-        }))
-        .pipe(cssnano())
-        .pipe(rename("styles.min.css"))
-        .pipe(gulp.dest('./dist/css/'))
-        .pipe(notify({ message: 'Styles task complete' }))
-    ;
+/**
+ * Build the Jekyll Site
+ */
+gulp.task('jekyll-build', function (done) {
+  browserSync.notify(messages.jekyllBuild);
+  return cp.spawn( jekyll , ['build'], {stdio: 'inherit'})
+    .on('close', done);
 });
 
-// Scripts
-gulp.task('scripts', function() {
-  return browserify('./src/js/main.js')
+/**
+ * Rebuild Jekyll & do page reload
+ */
+gulp.task('jekyll-rebuild', ['jekyll-build'], function () {
+    browserSync.reload();
+});
+
+/**
+ * Wait for jekyll-build, then launch the Server
+ */
+gulp.task('browser-sync', ['sass', 'jekyll-build'], function() {
+  browserSync({
+    server: {
+      baseDir: '_site'
+    }
+  });
+});
+
+/**
+ * Compile styles
+ */
+gulp.task('sass', function () {
+  return gulp.src('_src/scss/styles.scss')
+    .pipe(sass({
+        includePaths: ['scss'],
+        onError: browserSync.notify
+    }))
+    .pipe(prefix(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true }))
+    .pipe(cssnano())
+    .pipe(rename("styles.min.css"))
+    .pipe(gulp.dest('_site/dist/css'))
+    .pipe(browserSync.reload({stream:true}))
+    .pipe(gulp.dest('dist/css'));
+});
+
+
+/**
+ * Compile scripts
+ */
+gulp.task('js', function() {
+  return browserify('_src/js/main.js')
     .bundle()
     .pipe(source('bundle.js'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(buffer())
     .pipe(uglify())
-    .pipe(gulp.dest('./dist/js/'))
-    .pipe(notify({ message: 'Scripts task complete' }))
+    .pipe(gulp.dest('_site/dist/js/'))
+    .pipe(browserSync.reload({stream:true}))
+    .pipe(gulp.dest('dist/js/'))
   ;
 });
 
-// Default task
-gulp.task('default', ['styles', 'scripts']);
 
-
-// Watch files
-gulp.task('watch', function() {
-
-  // Watch .scss files
-  gulp.watch('./src/scss/*.scss', ['styles']);
-
-  // Watch .js files
-  gulp.watch('./src/js/*.js', ['scripts']);
-
-  // Create LiveReload server
-  livereload.listen();
-
-  // Watch any files in dist/, reload on change
-  gulp.watch(['./dist/**']).on('change', livereload.changed);
-
+/**
+ * Watch scss files for changes & recompile
+ * Watch html/md files, run jekyll & reload BrowserSync
+ */
+gulp.task('watch', function () {
+  gulp.watch('_src/scss/*.scss', ['sass']);
+  gulp.watch('_src/js/*.js', ['js']);
+  gulp.watch(['*.html', '_layouts/*.html', '_posts/*'], ['jekyll-rebuild']);
 });
+
+/**
+ * Default task, running just `gulp` will compile the sass,
+ * compile the jekyll site, launch BrowserSync & watch files.
+ */
+gulp.task('default', ['browser-sync', 'watch']);
