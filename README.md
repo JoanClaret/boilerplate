@@ -14,6 +14,7 @@ Includes
 &nbsp;&nbsp;✓ .gitignore<br>
 &nbsp;&nbsp;✓ _config.yml<br>
 
+
 How to use it:
 ------
 - Clone the Boilerplate repository `git clone https://github.com/JoanClaret/boilerplate.git`.
